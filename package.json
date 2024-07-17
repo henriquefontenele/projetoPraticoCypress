@@ -1,5 +1,15 @@
 {
   "dependencies": {
     "cypress": "^13.13.0"
-  }
+  },
+  "name": "projetocypress",
+  "version": "1.0.0",
+  "description": "Projeto Prático de Cypress",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henrique Fontenele",
+  "license": "MIT"
 }
