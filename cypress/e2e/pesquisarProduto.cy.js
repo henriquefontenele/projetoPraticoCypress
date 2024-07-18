@@ -1,50 +1,45 @@
 describe('Pesquisar Produto', () => {
 
-  beforeEach( () => {
-
+  //Abre a URL antes de cada Caso de Teste
+  beforeEach(() => {
     cy.visit('/')
-  
+
   })
 
+  //Pesquisa um produto existente
   it('Pesquisar Produto Existente', () => {
-    //cy.visit('/')
     cy.get('#twotabsearchtextbox').type('bola')
     cy.get('#nav-search-submit-button').click()
-    cy.get('[data-action="puis-card-container-declarative"]').contains('bola')
+    cy.get('[data-cy="title-recipe"]').contains('bola')
   })
 
+  //Filtra um produto existente por uma categoria de faixa etária
   it('Filtrar Produto Existente', () => {
-    //cy.visit('/')
     cy.get('#twotabsearchtextbox').type('bola')
     cy.get('#nav-search-submit-button').click()
-    cy.get('#p_n_feature_two_browse-bin> .a-list-item > .a-link-normal > .a-size-base').click()
-    cy.get('[data-action="puis-card-container-declarative"]').contains('bola')
-
+    cy.get('.a-declarative').contains('Criança grande').click()
+    cy.get('[data-cy="title-recipe"]').contains('Bola Futsal Raccer 200 Sub 13 (11/13 Anos) Infantil Cor:Branco')
   })
 
+  //Ordena um produto existente do preço do menor para o maior
   it('Ordenar Produto Existente', () => {
-    //cy.visit('/')
     cy.get('#twotabsearchtextbox').type('bola')
     cy.get('#nav-search-submit-button').click()
-    cy.get('#a-nostyle a-list-link').click()
-    cy.get('#s-result-sort-select_1').click()    
-    cy.get('[data-action="puis-card-container-declarative"]').contains('bola')   
+    cy.get('#a-autoid-0-announce').click()
+    cy.get('#s-result-sort-select_1').click()
+    cy.get('[data-cy="title-recipe"]').contains('Bola de Ping Pong, Plástico Branca, Yins, Kit com 06 Unidades')
   })
 
+  //Pesquisa um produto inexistente
   it('Pesquisar Produto Inexistente', () => {
-    //cy.visit('/')
-    cy.get('#twotabsearchtextbox').type('cachorro')
+    cy.get('#twotabsearchtextbox').type('xyhwr')
     cy.get('#nav-search-submit-button').click()
-    cy.get('[data-action="puis-card-container-declarative"]').contains('cachorro')
+    cy.get('.a-row').contains('Nenhum resultado para')
   })
 
+  //Pesquisa em branco
   it('Pesquisar Produto em Branco', () => {
-    //cy.visit('/')
     cy.get('#nav-search-submit-button').click()
-    cy.get('.as-title-block > .as-title-block-left > .a-color-base').contains('Compre ofertas por categoria')
+    cy.get('.as-title-block-left').contains('Compre ofertas por categoria')
   })
-
- 
-
-
 })
