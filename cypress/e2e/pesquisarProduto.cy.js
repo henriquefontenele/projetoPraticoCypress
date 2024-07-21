@@ -26,7 +26,7 @@ describe('Pesquisar Produto', () => {
     cy.get('#twotabsearchtextbox').type('bola')
     cy.get('#nav-search-submit-button').click()
     cy.get('#a-autoid-0-announce').click()
-    cy.get('#s-result-sort-select_1').click()
+    cy.get('#s-result-sort-select_1').should('be.visible').click()
     cy.get('[data-cy="title-recipe"]').contains('Bola de Ping Pong, Plástico Branca, Yins, Kit com 06 Unidades')
   })
 

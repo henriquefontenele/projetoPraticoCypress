@@ -11,6 +11,16 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
+
+Cypress.Commands.add('login', (email, password) => {
+  cy.get('#nav-link-accountList').click()
+  cy.get('.a-spacing-small').should('be.visible').contains('Fazer login')
+  cy.get('#ap_email').type(email)
+  cy.get('#continue').click()
+  cy.get('.a-spacing-small').should('be.visible').contains('Fazer login')
+  cy.get('#ap_password').type(password)
+  cy.click('#signInSubmit')
+})
 //
 //
 // -- This is a child command --
