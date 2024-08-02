@@ -1,13 +1,14 @@
 const { defineConfig } = require("cypress");
+const cucumber = require('cypress-cucumber-preprocessor').default
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      on('file:preprocessor', cucumber())
     },
-    baseUrl: 'https://www.amazon.com.br/',
-    //viewportHeight: 550,
-    //viewportWidth: 660,
+    specPattern: "cypress/e2e/step_definitions/*.feature",
+    baseUrl: 'https://demo.nopcommerce.com/',
     experimentalStudio: true
   },
+  
 });

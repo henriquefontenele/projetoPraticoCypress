@@ -1,16 +1,5 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+//Código criado por Henrique Fontenele
+//Contato: https://www.linkedin.com/in/heuriq/
 
 Cypress.Commands.add('login', (email, password) => {
   cy.get('#nav-link-accountList').click()
@@ -21,15 +10,25 @@ Cypress.Commands.add('login', (email, password) => {
   cy.get('#ap_password').type(password)
   cy.click('#signInSubmit')
 })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('validarPincode', (pincode) => {
+  const superagent = require('superagent')
+  const mailsac_api_key = 'k_2jON4AEV6YlG5IB1TSPbNIQaUQa8z2lylWszKxI20'
+
+  superagent
+    .get('https://mailsac.com/api/addresses/superqa@mailsac.com/messages')
+    .set('Mailsac-Key', mailsac_api_key)
+    .then((messages) => {
+      const messageId = messages.body[0]._id
+      superagent
+        .get('https://mailsac.com/api/text/superqa@mailsac.com/' + messageId)
+        .set('Mailsac-Key', mailsac_api_key)
+        .then((messageText) => {
+          console.log(messageText.text)
+        })
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+
+})

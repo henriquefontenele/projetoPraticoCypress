@@ -1,15 +1,29 @@
 {
   "dependencies": {
-    "cypress": "^13.13.0",
-    "faker-brasil": "^1.0.2"
+    "@mailsac/api": "^1.0.6",
+    "dotenv": "^16.4.5",
+    "faker-brasil": "^1.0.2",
+    "superagent": "^9.0.2"
   },
   "name": "projetocypress",
   "version": "1.0.0",
   "description": "Projeto Prático de Cypress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "testFiles": "**/*.{feature,features}"
   },
+ 
   "author": "Henrique Fontenele",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "cypress": "^13.13.2",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  },
+
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/e2e/step_definitions"
+  }
 }
